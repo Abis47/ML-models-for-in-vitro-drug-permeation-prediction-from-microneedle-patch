@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Drug permeation amount prediction from microneedles patch</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../static/css/style.css">
+
+</head>
+
+<body >
+ <div class="login">
+    <div class="heading-h1">
+        <font size="6">
+        <h1>Microneedles patch drug permeation amount prediction</h1>
+    </div>
+    <div class="result">
+        <font size="7"> 
+	    <!--<p><b>{{ prediction_text }}</b></p>-->
+    </div>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+        <select name="drug_name" id="drug_name" required="required" >
+      <option selected disabled>Drug Name</option>
+      <option value="BSA">BSA</option>
+      <option value="Lidocaine">Lidocaine</option>
+      <option value="Rhodamine B">Rhodamine B</option>
+      <option value="Caffeine">Caffeine</option>
+      <option value="Copper ions">Copper ions</option>
+      <option value="GHK peptide">GHK peptide</option>
+   </select>
+        <input type="text" name="drug_load" placeholder="Drug loaded in the MN patch (µg)" required="required" >
+		<input type="text" name="mn_length" placeholder="MN height (mm)" required="required" >
+        <select name="skin_type" id="skin_type" required="required" >
+      <option selected disabled>Skin Type</option>
+      <option value="Rat">Rat skin</option>
+      <option value="Human">Human skin</option>
+        </select>
+
+        <select name="mn_type" id="mn_type" required="required" >
+      <option selected disabled>Microneedle Type</option>
+      <option value="Hydrogel">Hydrogel</option>
+      <option value="Plastic">Plastic</option>
+        </select>
+		<input type="text" name="mn_surface_area" placeholder="MN surface area (sq mm)" required="required" >
+		<input type="text" name="permeation_time" placeholder="Drug permeation time (hour)" required="required" >
+    
+    <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    <div class='popup'>
+        <div class="result">
+        <font size="10"> 
+            <!--<h2>{{ prediction_text }}</h2>-->
+	    <p><b>{{ prediction_text }}</b></p>
+    </div
+        
+        </div>
+    </form>
+    
+    <!--<ul>
+        <li><b>Drug Name</b> can only be Bovine Serum Albumin (BSA), Lidocaine, Rhodamine B, Caffeine, Copper ions, or GHK peptide</li>
+            </ul>-->
+    
+ </div>
+
+</body>
+</html>
